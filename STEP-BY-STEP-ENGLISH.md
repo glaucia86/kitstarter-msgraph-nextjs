@@ -1,89 +1,94 @@
-# Reminder App - step by step tutorial
+# Reminder App - A Step by Step Tutorial
 
-*(colocar a foto da aplicação)*
+*(put picture about the application here)*
 
-Aqui nesse tutorial vamos aprender a como podemos usar Microsoft Graph integrado com Next.js
+In this tutorial we will learn how to use Microsoft Graph integrated with Next.js.
 
-Mas primeiro precisamos entender antes o que é Microsoft Graph.
+But first we need to understand what Microsoft Graph is.
 
-Microsoft Graph é uma API que permite que você acesse dados e serviços do Microsoft 365. Você pode usar a API do Microsoft Graph para construir aplicativos que interajam com milhões de usuários em todo o mundo, acessando dados de maneira consistente em todo o ecossistema do Microsoft 365.
+Microsoft Graph is an API that allows you to access data and services from Microsoft 365. You can use the Microsoft Graph API to build applications that interact with millions of users around the world, accessing data in a consistent way across the Microsoft 365 ecosystem.
 
-*(escrever aqui sobre o Microsoft Graph - incluindo algumas imagens)*
+*(write here about Microsoft Graph - including some images)*
 
-Agora que já entendemos o que é o Microsoft Graph, vamos começar a criar nossa aplicação.
+Now that we already understand what Microsoft Graph is, let's start creating our application.
 
-## Take a Break Reminder App. O que é? O que faz?
+## Take a Break Reminder App. What is it? What does it do?
 
-Essa aplicação é um lembrete de intervalos de tempo para você se levantar e fazer uma pausa. A aplicação irá te lembrar de fazer uma pausa a cada 60 minutos. O aplicativo irá mostrar uma notificação na tela do seu computador e também irá enviar um e-mail para você. 
+This application is a reminder of time intervals for you to get up and take a break. The application will remind you to take a break every 60 minutes. The application will show a notification on your computer screen and will also send you an email.
 
-*(explicar o que a aplicação faz)*
+*(explain what the application does)*
 
-## Recursos usados
+## Resources used
 
-*(listar todos os recursos usados durante o desenvolvimento da aplicação)*
+*(list all resources used during the development of the application)*
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de mais nada, antes de criar a nossa aplicação, precisaremos fazer algumas coisinhas antes. 
+Before anything, before creating our application, we will need to do some things first.
 
-Uma delas é, criar uma conta no Microsoft 365 Developer Program. **[LINK AQUI](https://developer.microsoft.com/en-us/microsoft-365/dev-program)**. Não se preocupe. Essa conta é totalmente gratuita!
+One of them is, create an account on the Microsoft 365 Developer Program. **[LINK HERE](https://developer.microsoft.com/en-us/microsoft-365/dev-program)**. Don't worry. This account is totally free!
 
-Se você tiver dúvidas em como criar a conta, você pode assistir esse vídeo **[AQUI](https://www.youtube.com/watch?v=JvWLgirC8xs)**. Pois explica direitinho como criar a conta.
+If you have any doubts on how to create the account, you can watch this video **[HERE](https://www.youtube.com/watch?v=JvWLgirC8xs)**. Because it explains very well how to create the account.
 
-## Criando a aplicação no Portal Azure
+## Creating the application on the Azure Portal
 
-Agora precisamos seguir os seguintes passos para criar a aplicação no portal Azure.
+Now we need to follow the steps below to create the application on the Azure portal.
 
-*(colocar o passo a passo com imagens como criar a aplicação no Azure, incluso as environments da aplicação)*
+*(put step by step with images as how to create the application on Azure, included the environments of the application)*
 
-Perfeito! Agora podemos começar a codar!
+Perfect! Now we can start to code our application! 
 
-## Let's code!
+## Let's Code!
 
-Agora que criamos a nossa aplicação no portal Azure, vamos começar a codar. Nesse projeto utilizaremos o Next.js, então vamos começar instalando ele.
+Once we already created our application on the Azure portal, we can start to code our application. In this tutorial we will use Next.js. But you can use any other framework you want. Let's install the Next.js framework.
 
-Para isso, vamos abrir o terminal e digitar o seguinte comando:
-
+Open your terminal and run the following command:
 
 ```bash
-npx create-next-app reminder-app --typescript
+npx create-next-app reminder-app --typescript 
 ```
 
-Agora que já criamos o projeto, para saber que tudo está funcionando, vamos rodar o projeto com o seguinte comando:
+Now we already have our application created. Let's execute it to see if everything is working.
 
 ```bash
 cd reminder-app
+npm run dev
 ```
 
 ```bash
 npm run dev
 ```
 
-Abre o browser e digite o seguinte endereço: http://localhost:3000 e pronto! Já temos o nosso projeto rodando.
+Open the browser and go to the following address: [http://localhost:3000](http://localhost:3000).
 
-Precisamos instalar algumas dependências para que possamos dar continuarmos com o nosso projeto. Um deles é o **[Microsoft Graph Client](https://learn.microsoft.com/en-us/graph/sdks/create-client?tabs=Javascript)**. Para instalar, vamos digitar o seguinte comando:
+Now we need to install some dependencies. And one of them is the [Microsoft Graph Client](https://learn.microsoft.com/en-us/graph/sdks/create-client?tabs=Javascript). To install it, run the following command:
 
 ```bash
 npm install @microsoft/microsoft-graph-client
-```  
+```
 
-Se desejar conhecer mais sobre o Microsoft Graph Client, você pode acessar esse link **[AQUI](https://docs.microsoft.com/en-us/graph/sdks/sdks-overview)** e conhecer o NPM do Microsoft Graph Client **[AQUI](https://www.npmjs.com/package/@microsoft/microsoft-graph-client)**.
+If you want to know more about the Microsoft Graph Client, you can read the documentation **[HERE](https://docs.microsoft.com/en-us/graph/sdks/sdks-overview)**. And also, know about the NPM package **[HERE](https://www.npmjs.com/package/@microsoft/microsoft-graph-client)**.
 
-Outro pacote que precisaremos instalar é o NextAuth. Para instalar, vamos digitar o seguinte comando:
+Another package we will need to install is NextAuth. It is a library that helps us to integrate authentication with Next.js. To install it, run the following command:
 
 ```bash
 npm install next-auth
 ```
 
-Também, se desejar saber mais sobre o NextAuth, você pode acessar esse link **[AQUI](https://next-auth.js.org/)** e conhecer o NPM do NextAuth **[AQUI](https://www.npmjs.com/package/next-auth)**.
+Also, if you want to know more about NextAuth, you can read the documentation **[HERE](https://next-auth.js.org/)**. And also, know about the NPM package **[HERE](https://www.npmjs.com/package/next-auth)**.
 
-Podemos agora começar a criar alguns componentes. 
+Now we can finally start coding our application.
 
-## Criando alguns componentes na aplicação!
+## Creating the Application Components
 
-Vamos agora alterar um pouco a nossa aplicação. Não usaremos, nesse primeiro momento, nenhum UI Framework. Então vamos começar criando alguns componentes.
+Now let's make some changes to our application. In this moment we are not going to use none UI framework. So, let's start creating some components.
 
-Toda aplicação precisa de um Layout. Então vamos criar um componente chamado Layout. Para isso, crie uma pasta chamada `components` e dentro dessa pasta, crie dois arquivos:
+Every application needs a Layout. So, let's create a Layout component. Create a folder called `components` and inside it create these files:
+
+- `layout.module.css`
+- `layout.tsx`
+
+The `layout.module.css` file will be used to style our Layout component. And the `layout.tsx` file will be used to create our Layout component.
 
 * `layout.tsx`
 
@@ -117,7 +122,7 @@ export default function Layout({ children }: Props) {
 </details>
 <br/>
 
-Calma! Ainda não acabou! Vamos criar mais um componente. Agora vamos criar o componente `Header` e crie os seguintes arquivos:
+Hold on! It's not over yet. We need to create the `Header` and `Footer` components. So, let's create them.
 
 * `header.module.css`
 * `header.tsx`
@@ -221,9 +226,9 @@ Calma! Ainda não acabou! Vamos criar mais um componente. Agora vamos criar o co
 </details>
 <br/>
 
-Não vamos entrar em detalhes sobre o css.
+We won't go into details about the css. 
 
-Agora, vamos focar no arquivo `header.tsx`. Abra o arquivo `header.tsx` e coloque o seguinte código:
+Now let's focus on the `header.tsx` file. Open the `header.tsx` file and add the following code:
 
 <details><summary><b>components/Header/header.tsx</b></summary>
 <br/>
@@ -331,14 +336,14 @@ export default function Header() {
 </details>
 <br/>
 
-Se você olhar o código acima, você verá que estamos usando o `useSession` do `next-auth/react` para obter os dados da sessão do usuário. E também estamos usando o `status` para verificar se a sessão está carregando ou não. 
+If you look at the code above, you'll see that we're using the `useSession` hook to get the session data. We're also using the `signIn` and `signOut` functions to sign in and out of the application. And also we are using the `status` variable to check if the session is loading or not.
 
-Você verá que estamos usando o `session?.user` para verificar se o usuário está logado ou não. Se o usuário estiver logado, então mostraremos o nome e o e-mail do usuário. E também, se o usuário estiver logado, então mostraremos o botão `Sign Out` para que o usuário possa sair da aplicação.
+You will see we are using `session?.user` to check if the user is signed in or not. If the user is signed in, we will show the user's name and email address. If the user is signed in we will show the `Sign Out` button to log out of the application.
 
-Já na parte do bloco do código dentro do `return` estamos usando react. E também estamos usando o `Link` do `next/link` para navegar entre as páginas da aplicação. 
+Inside in the `return` block code we are using React. And also, we are using the `Link` component from Next.js to navigate between pages.
 
-E, finalmente vamos criar o Footer component. 
-Novamente, dentro da pasta `components` crie uma pasta chamada `Footer` e dentro dela crie os arquivos:
+And finally, let's create the Footer component. Open the `components` folder and create a new folder called `Footer`. Inside in the `Footer` folder, create these files:
+
 
 - `footer.module.css`
 - `footer.tsx`
@@ -365,7 +370,6 @@ Novamente, dentro da pasta `components` crie uma pasta chamada `Footer` e dentro
 
 </details>
 <br/>
-
 
 <details><summary><b>components/Footer/footer.tsx</b></summary>
 <br/>
@@ -402,5 +406,5 @@ export default function Footer() {
 </details>
 <br/>
 
-É um Footer bem simples. Mas, se você quiser, pode adicionar mais coisas.
+It's a simple footer component. But if you want to add more things to it, feel free to do it.
 
