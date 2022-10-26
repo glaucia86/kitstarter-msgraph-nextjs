@@ -1,5 +1,7 @@
 # Reminder App - step by step tutorial
 
+*(colocar a foto da aplicação)*
+
 Aqui nesse tutorial vamos aprender a como podemos usar Microsoft Graph integrado com Next.js
 
 Mas primeiro precisamos entender antes o que é Microsoft Graph 
