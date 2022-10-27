@@ -1,3 +1,10 @@
+/**
+ * file: pages/index.tsx
+ * description: file responsible for the home page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
 import Layout from '../components/Layout/layout';
 
 export default function IndexPage() {
