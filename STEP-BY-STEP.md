@@ -335,7 +335,6 @@ E, finalmente vamos criar o Footer component.
 Novamente, dentro da pasta `components` crie uma pasta chamada `Footer` e dentro dela crie os arquivos:
 
 - `footer.module.css`
-- `footer.tsx`
 
 <details><summary><b>components/Footer/footer.module.css</b></summary>
 <br/>
@@ -360,21 +359,13 @@ Novamente, dentro da pasta `components` crie uma pasta chamada `Footer` e dentro
 </details>
 <br/>
 
+- `footer.tsx`
 
 <details><summary><b>components/Footer/footer.tsx</b></summary>
 <br/>
 
 ```tsx
-/**
- * file: components/Footer/footer.tsx
- * description: file responsible for the 'Footer' component
- * data: 10/26/2022
- * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
- */
-
-import Link from 'next/link';
 import styles from '../Footer/footer.module.css';
-import packageJSON from '../../package.json';
 
 export default function Footer() {
   return (
@@ -385,7 +376,10 @@ export default function Footer() {
           <a href='https://twitter.com/glaucia_lemos86'>Twitter</a>
         </li>
         <li className={styles.navItem}>
-          <em>next-auth@{packageJSON.dependencies['next-auth']}</em>
+          <a href='https://twitter.com/glaucia_lemos86'>Youtube</a>
+        </li>
+        <li className={styles.navItem}>
+          <a href='https://twitter.com/glaucia_lemos86'>Linkedin</a>
         </li>
       </ul>
     </footer>

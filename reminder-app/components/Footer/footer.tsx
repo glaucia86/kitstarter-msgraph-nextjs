@@ -5,9 +5,7 @@
  * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
  */
 
-import Link from 'next/link';
 import styles from '../Footer/footer.module.css';
-import packageJSON from '../../package.json';
 
 export default function Footer() {
   return (
@@ -18,7 +16,10 @@ export default function Footer() {
           <a href='https://twitter.com/glaucia_lemos86'>Twitter</a>
         </li>
         <li className={styles.navItem}>
-          <em>next-auth@{packageJSON.dependencies['next-auth']}</em>
+          <a href='https://twitter.com/glaucia_lemos86'>Youtube</a>
+        </li>
+        <li className={styles.navItem}>
+          <a href='https://twitter.com/glaucia_lemos86'>Linkedin</a>
         </li>
       </ul>
     </footer>
