@@ -408,3 +408,72 @@ export default function Footer() {
 
 It's a simple footer component. But if you want to add more things to it, feel free to do it.
 
+But what if the user is not logged in? So what happens?  We have to create a page that says the user does not have permission to access the page. Shall we create it? Let's do it!
+
+Inside the `components` folder, create a new folder called `AccessDenied`. Inside in this folder, create the file: 
+
+- `access-denied.tsx`
+
+<details><summary><b>components/AccessDenied/access-denied.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: components/AccessDenied/access-denied.tsx
+ * description: file responsible for the 'AccessDenied' component.
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { signIn } from 'next-auth/react';
+
+export default function AccessDenied() {
+  return (
+    <>
+      <h1>Access Denied</h1>
+      <p>
+        <a
+          href='/api/auth/signin'
+          onClick={(e) => {
+            e.preventDefault();
+            signIn();
+          }}
+        >
+          You must be signed in to view this page
+        </a>
+      </p>
+    </>
+  );
+}
+```
+
+</details>
+<br/>
+
+Again! It's a simple component. When we finish this whole tutorial, we can add some UI to it. But for now, let's keep it simple, using Material UI.
+
+As we are using TypeScript in this application, we need to transpile the code. So let's do it! Open the terminal and run the following command:
+
+```bash
+npm run build
+```
+
+And then run the following command:
+
+```bash
+npm run dev
+```
+
+You will see the screen it still the same. But, why? Because we need to change the `index.tsx` file. And then, include all the components we created. So let's do it!
+Open the `pages` folder and open the `index.tsx` file. And then, change the code to the following:
+
+<details><summary><b>pages/index.tsx</b></summary>
+<br/>
+
+```tsx
+```
+</details>
+<br/>
+
+
+
