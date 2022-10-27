@@ -105,18 +105,20 @@ The `layout.module.css` file will be used to style our Layout component. And the
 
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
-import type { ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 
-interface Props {
-  children: React.ReactNode;
+interface LayoutProps {
+  children: ReactNode;
 }
 
-export default function Layout({ children }: Props) {
-  <>
-    <Header />
-    <main>{children}</main>
-    <Footer />
-  </>;
+export default function Layout({ children }: LayoutProps) {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 }
 ```
 </details>
@@ -308,24 +310,16 @@ export default function Header() {
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href='/'>
-              <a>Home</a>
-            </Link>
+            <Link href='/'>Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href='/protected'>
-              <a>Protected</a>
-            </Link>
+            <Link href='/protected'>Protected</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href='/admin'>
-              <a>Admin</a>
-            </Link>
+            <Link href='/admin'>Admin</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href='/reminder'>
-              <a>Reminder</a>
-            </Link>
+            <Link href='/reminder'>Reminder</Link>
           </li>
         </ul>
       </nav>
@@ -474,6 +468,5 @@ Open the `pages` folder and open the `index.tsx` file. And then, change the code
 ```
 </details>
 <br/>
-
 
 

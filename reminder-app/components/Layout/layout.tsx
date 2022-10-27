@@ -7,16 +7,18 @@
 
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
-import type { ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 
-interface Props {
-  children: React.ReactNode;
+interface LayoutProps {
+  children: ReactNode;
 }
 
-export default function Layout({ children }: Props) {
-  <>
-    <Header />
-    <main>{children}</main>
-    <Footer />
-  </>;
+export default function Layout({ children }: LayoutProps) {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 }
