@@ -551,7 +551,7 @@ Os links das páginas ainda não estão funcionando. Vamos fazer isso agora?
 
 ## Criando as páginas da aplicação
 
-Agora, vamos criar as páginas da aplicação e também alguns outros arquivos. Para isso, dentro da pasta `pages` crie os arquivos:
+Agora, vamos criar as páginas da aplicação. Para isso, dentro da pasta `pages` crie os arquivos:
 
 - `styles.css`
 - `server.tsx`
@@ -559,6 +559,51 @@ Agora, vamos criar as páginas da aplicação e também alguns outros arquivos. 
 - `admin.tsx`
 - `reminder.tsx`
 
+E para melhorar um pouco o css da aplicação, vamos adicionar o seguinte código no arquivo `styles.css`:
+
+* `styles.css`
+
+<details><summary><b>styles.css</b></summary>
+<br/>
+
+```css
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  padding: 0 1rem 1rem 1rem;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  color: #333;
+}
+
+li,
+p {
+  line-height: 1.5rem;
+}
+
+a {
+  font-weight: 500;
+}
+
+hr {
+  border: 1px solid #ddd;
+}
+
+iframe {
+  background: #ccc;
+  border: 1px solid #ccc;
+  height: 10rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  filter: invert(1);
+}
+```
+
+</details>
+<br/>
 
 
 

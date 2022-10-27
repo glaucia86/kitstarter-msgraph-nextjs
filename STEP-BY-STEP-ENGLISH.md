@@ -554,13 +554,60 @@ Page links are still not working. But we will fix it in the next section. Let's 
 
 ## Creating the pages for the application
 
-Now, let's create the pages for the application and also some important files. Open the `pages` folder and create the following files:
+Now, let's create the pages for the application. Open the `pages` folder and create the following files:
 
 - `styles.css`
 - `server.tsx`
 - `protected.tsx`
 - `admin.tsx`
 - `reminder.tsx`
+
+And to improve the application's css a little bit more, let's add the following code in the `styles.css` file:
+
+* `styles.css`
+
+<details><summary><b>styles.css</b></summary>
+<br/>
+
+```css
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  padding: 0 1rem 1rem 1rem;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  color: #333;
+}
+
+li,
+p {
+  line-height: 1.5rem;
+}
+
+a {
+  font-weight: 500;
+}
+
+hr {
+  border: 1px solid #ddd;
+}
+
+iframe {
+  background: #ccc;
+  border: 1px solid #ccc;
+  height: 10rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  filter: invert(1);
+}
+```
+
+</details>
+<br/>
+
 
 
 
