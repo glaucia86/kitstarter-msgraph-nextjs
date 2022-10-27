@@ -458,15 +458,25 @@ And then run the following command:
 npm run dev
 ```
 
-You will see the screen it still the same. But, why? Because we need to change the `index.tsx` file. And then, include all the components we created. So let's do it!
-Open the `pages` folder and open the `index.tsx` file. And then, change the code to the following:
+You will see the screen it still the same. But why? Because we haven't created the pages yet. So let's do it!
 
-<details><summary><b>pages/index.tsx</b></summary>
-<br/>
+## Creating the pages for the application
 
-```tsx
-```
-</details>
-<br/>
+Now, let's create the pages for the application and also some important files. Open the `pages` folder and create the following files:
+
+- `styles.css`
+- `server.tsx`
+- `protected.tsx`
+- `admin.tsx`
+- `reminder.tsx`
+
+And also, in the root folder of the application, let's create the following files:
+
+- `middleware.ts`
+- `next-auth.d.ts`
+- `process.d.ts`
+
+
+
 
 

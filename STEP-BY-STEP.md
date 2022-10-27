@@ -115,7 +115,6 @@ export default function Layout({ children }: LayoutProps) {
     </>
   );
 }
-
 ```
 </details>
 <br/>
@@ -455,15 +454,24 @@ E, por fim, vamos iniciar a aplicação. Para isso, execute o comando abaixo:
 npm run dev
 ```
 
-Você verá que a tela continua a mesma. Mas, por que? Porque precisamos alterar o arquivo contido dentro da página `index.tsx` para incluir os componentes que acabamos de criar.
+Você verá que a tela continua a mesma. Mas, por que? Porque ainda não criamos as páginas da aplicação. Vamos fazer isso agora?
 
-<details><summary><b>pages/index.tsx</b></summary>
-<br/>
+## Criando as páginas da aplicação
 
-```tsx
-```
-</details>
-<br/>
+Agora, vamos criar as páginas da aplicação e também alguns outros arquivos. Para isso, dentro da pasta `pages` crie os arquivos:
+
+- `styles.css`
+- `server.tsx`
+- `protected.tsx`
+- `admin.tsx`
+- `reminder.tsx`
+
+E, vamos aproveitar e criar na raiz do projeto os seguintes arquivos:
+
+- `middleware.ts`
+- `next-auth.d.ts`
+- `process.d.ts`
+
 
 
 
