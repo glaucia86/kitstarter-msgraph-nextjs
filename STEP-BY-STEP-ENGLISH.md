@@ -470,11 +470,6 @@ Now, let's create the pages for the application and also some important files. O
 - `admin.tsx`
 - `reminder.tsx`
 
-And also, in the root folder of the application, let's create the following files:
-
-- `middleware.ts`
-- `next-auth.d.ts`
-- `process.d.ts`
 
 
 

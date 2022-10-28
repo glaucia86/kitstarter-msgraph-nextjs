@@ -456,6 +456,24 @@ npm run dev
 
 Você verá que a tela continua a mesma. Mas, por que? Porque ainda não criamos as páginas da aplicação. Vamos fazer isso agora?
 
+# Definindo AAD Provider no NextAuth
+
+Antes de darmos continuidade, precisamos configurar o AAD Provider no NextAuth. Para isso, dentro da pasta `pages` crie um arquivo chamado `api/auth/[...nextauth].ts` e adicione o seguinte código:
+
+* `pages/api/auth/[...nextauth].ts`
+
+<details><summary><b>pages/api/auth/[...nextauth].ts</b></summary>
+<br/>
+
+```tsx
+
+```
+
+</details>
+<br/>
+
+
+
 ## Criando as páginas da aplicação
 
 Agora, vamos criar as páginas da aplicação e também alguns outros arquivos. Para isso, dentro da pasta `pages` crie os arquivos:
@@ -466,11 +484,6 @@ Agora, vamos criar as páginas da aplicação e também alguns outros arquivos. 
 - `admin.tsx`
 - `reminder.tsx`
 
-E, vamos aproveitar e criar na raiz do projeto os seguintes arquivos:
-
-- `middleware.ts`
-- `next-auth.d.ts`
-- `process.d.ts`
 
 
 
