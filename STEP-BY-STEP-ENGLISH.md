@@ -509,6 +509,48 @@ NEXTAUTH_SECRET=123
 
 If you want, I created a file called `.env.local.template` as sample. You can use as a reference.
 
+Now we need to configure the main project in the project. So let's do it! Open the `pages/_app.tsx` file and add the following code:
+
+* `pages/_app.tsx`
+
+<details><summary><b>pages/_app.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/_app.tsx
+ * description: file responsible for the application's configuration
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { SessionProvider } from 'next-auth/react';
+
+import type { AppProps } from 'next/app';
+import type { Session } from 'next-auth';
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<{ session: Session }>) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
+```
+
+</details>
+<br/>
+
+We are here defining the `SessionProvider` from the NextAuth. It is responsible for managing the session of the user. 
+
+Now let's run the application again e then open the browser and access the following URL: `http://localhost:3000`. If you see the following screen, it means that everything is working fine:
+
+![image-01](./images/image-01.jpg)
+
+Page links are still not working. But we will fix it in the next section. Let's create these pages now!
 
 ## Creating the pages for the application
 

@@ -488,6 +488,7 @@ export const authOptions: NextAuthOptions = {
 
 export default NextAuth(authOptions);
 ```
+
 </details>
 <br/>
 
@@ -505,6 +506,48 @@ NEXTAUTH_SECRET=123
 
 Se desejar, eu criei um arquivo chamado `.env.local.example` que você pode usar como referência para criar o seu arquivo `.env.local`.
 
+Agora precisamos configurar o arquivo principal da aplicação. Abre o arquivo `pages/_app.tsx` e adicione o seguinte código:
+
+* `pages/_app.tsx`
+
+<details><summary><b>pages/_app.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/_app.tsx
+ * description: file responsible for the application's configuration
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { SessionProvider } from 'next-auth/react';
+
+import type { AppProps } from 'next/app';
+import type { Session } from 'next-auth';
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<{ session: Session }>) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
+```
+
+</details>
+<br/>
+
+Estamos aqui definindo o `SessionProvider` do NextAuth. Ele é responsável por fornecer o estado da sessão para todos os componentes da aplicação.
+
+Agora, execute a aplicação novamente e logo em seguida abre o browser em `http://localhost:3000`. Se a sua tela estiver parecida com a imagem abaixo, significa que tudo está funcionando corretamente:
+
+![image-01](./images/image-01.jpg)
+
+Os links das páginas ainda não estão funcionando. Vamos fazer isso agora?
 
 ## Criando as páginas da aplicação
 
