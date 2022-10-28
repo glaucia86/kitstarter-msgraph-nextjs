@@ -618,7 +618,45 @@ import './styles.css';
 </details>
 <br/>
 
-Let's create Admin page. Open the `pages/admin.tsx` file and add the following code:
+And also, create e folder called `styles` in the root of the project and create the file `Home.module.css` and add the following code:
+
+* `styles/Home.module.css`
+
+<details><summary><b>styles/Home.module.css</b></summary>
+<br/>
+
+```css
+.container {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin: 5% 0;
+  line-height: 1.15;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+```
+
+</details>
+<br/>
+
+I created an image to include in the home page. If you want to use it, you can get from the repository of this project inside the `public` folder. The images is called `reminder.gif`.
+
+Now, let's create Admin page. Open the `pages/admin.tsx` file and add the following code:
 
 * `pages/admin.tsx`
 
@@ -633,13 +671,17 @@ Let's create Admin page. Open the `pages/admin.tsx` file and add the following c
  * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
  */
 
+import { useSession } from 'next-auth/react';
 import Layout from '../components/Layout/layout';
 
 export default function Page() {
+  const { data } = useSession();
+
   return (
     <Layout>
       <h1>Admin Page</h1>
-      <p> Only admin users can see this page </p>
+      <p>Only admin users can see this page.</p>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   );
 }
@@ -656,12 +698,86 @@ And let's make the same thing with the `reminder.tsx` file:
 <br/>
 
 ```tsx
+/**
+ * file: pages/reminder.tsx
+ * description: file responsible for the reminder page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import Layout from '../components/Layout/layout';
+
+export default function ReminderPage() {
+  return (
+    <Layout>
+      <h1>Reminder Page</h1>
+      <p>Only admin users can see this page.</p>
+    </Layout>
+  );
+}
 ```
 
 </details>
 <br/>
 
+Now, let's make some important changes in the `index.tsx` file and add the following code:
 
+* `pages/index.tsx`
+
+<details><summary><b>pages/index.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/index.tsx
+ * description: file responsible for the home page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import Head from 'next/head';
+import Layout from '../components/Layout/layout';
+import Image from 'next/image';
+import reminderImage from '../public/images/reminder.gif';
+import styles from '../styles/Home.module.css';
+
+export default function IndexPage() {
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <Head>
+          <title>NextJs | Microsoft Graph</title>
+        </Head>
+        <main className={styles.main}>
+          <h1>Take a Break Reminder App</h1>
+          <h4>
+            A step by step tutorial how you can use Microsoft Graph with
+            Next.Js!
+          </h4>
+          <div>
+            <Image
+              priority={true}
+              src={reminderImage}
+              width={560}
+              height={315}
+              alt='a clock image with a reminder'
+            />
+          </div>
+        </main>
+      </div>
+    </Layout>
+  );
+}
+```
+
+</details>
+<br/>
+
+Wow! How many changes, right? 😅 Let's try to understand what is happening here. First, we are importing the `Head` component from the `next/head` package. This component is responsible for adding the title of the page. So, we are adding the title of the page as `NextJs | Microsoft Graph`. Then, we are importing the `Layout` component that we created previously. And also, we are importing the `Image` component from the `next/image` package. This component is responsible for adding the image in the home page. So, we are adding the image that we created previously. And finally, we are importing the `Home.module.css` file that we created previously. 
+
+Now run again the application and check the result:
+
+![image](./images/image-02.jpg)
 
 
 
