@@ -599,6 +599,66 @@ iframe {
 </details>
 <br/>
 
+Retorne ao arquivo `pages/_app.tsx` e importe o estilo que acabamos de criar:
+
+* `pages/_app.tsx`
+
+<details><summary><b>pages/_app.tsx</b></summary>
+<br/>
+
+```tsx
+import './styles.css';
+
+(... some code here ...)
+```
+
+</details>
+<br/>
+
+Vamos agora começar a desenvolver a página do Admin. Para isso, vamos adicionar o seguinte código no arquivo `admin.tsx`:
+
+* `pages/admin.tsx`
+
+<details><summary><b>pages/admin.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/admin.tsx
+ * description: file responsible for the admin page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import Layout from '../components/Layout/layout';
+
+export default function Page() {
+  return (
+    <Layout>
+      <h1>Admin Page</h1>
+      <p> Only admin users can see this page </p>
+    </Layout>
+  );
+}
+```
+
+</details>
+<br/>
+
+E, vamos fazer a mesma coisa com a página `reminder.tsx`:
+
+* `pages/reminder.tsx`
+
+<details><summary><b>pages/reminder.tsx</b></summary>
+<br/>
+
+```tsx
+```
+
+</details>
+<br/>
+
+
 
 
 
