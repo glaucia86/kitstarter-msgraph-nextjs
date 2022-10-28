@@ -460,6 +460,56 @@ npm run dev
 
 You will see the screen it still the same. But why? Because we haven't created the pages yet. So let's do it!
 
+## Defining AAD Provider in Next.js
+
+Before we start creating the pages, we need to define the AAD provider in NextAuth. For this, inside the `pages/api` folder create a new folder called `auth`. Inside in this folder, create the file `[...nextauth]].ts` and add the following code:
+
+* `pages/api/auth/[...nextauth].ts`
+
+<details><summary><b>pages/api/auth/[...nextauth].ts</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/api/auth/[...nextauth].ts
+ * description: file responsible for the authenticate an user using AAD Provider
+ * data: 10/28/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import NextAuth, { NextAuthOptions } from "next-auth";
+import AzureADProvider from 'next-auth/providers/azure-ad';
+
+export const authOptions: NextAuthOptions = {
+  providers: [
+    AzureADProvider({
+      clientId: process.env.AZURE_CLIENT_ID,
+      clientSecret: process.env.AZURE_CLIENT_SECRET,
+      tenantId: process.env.AZURE_TENANT_ID,
+    })
+  ]
+}
+
+export default NextAuth(authOptions);
+```
+</details>
+<br/>
+
+Now we need to use the environment variables that we created before in AAD portal. So let's create the `.env.local` file in the root of the project and add the following code:
+
+* `.env.local`
+
+```text
+AZURE_AD_CLIENT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+AZURE_AD_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AZURE_AD_TENANT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=123
+```
+
+If you want, I created a file called `.env.local.template` as sample. You can use as a reference.
+
+
 ## Creating the pages for the application
 
 Now, let's create the pages for the application and also some important files. Open the `pages` folder and create the following files:

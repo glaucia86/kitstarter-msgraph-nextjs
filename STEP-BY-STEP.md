@@ -458,7 +458,7 @@ Você verá que a tela continua a mesma. Mas, por que? Porque ainda não criamos
 
 # Definindo AAD Provider no NextAuth
 
-Antes de darmos continuidade, precisamos configurar o AAD Provider no NextAuth. Para isso, dentro da pasta `pages` crie um arquivo chamado `api/auth/[...nextauth].ts` e adicione o seguinte código:
+Antes de darmos continuidade, precisamos configurar o AAD Provider no NextAuth. Para isso, dentro da pasta `pages/api` crie uma pasta chamada `auth`. E, dentro dessa pasta crie o arquivo `[...nextauth].ts` e adicione o seguinte código:
 
 * `pages/api/auth/[...nextauth].ts`
 
@@ -466,12 +466,44 @@ Antes de darmos continuidade, precisamos configurar o AAD Provider no NextAuth. 
 <br/>
 
 ```tsx
+/**
+ * file: pages/api/auth/[...nextauth].ts
+ * description: file responsible for the authenticate an user using AAD Provider
+ * data: 10/28/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
 
+import NextAuth, { NextAuthOptions } from "next-auth";
+import AzureADProvider from 'next-auth/providers/azure-ad';
+
+export const authOptions: NextAuthOptions = {
+  providers: [
+    AzureADProvider({
+      clientId: process.env.AZURE_CLIENT_ID,
+      clientSecret: process.env.AZURE_CLIENT_SECRET,
+      tenantId: process.env.AZURE_TENANT_ID,
+    })
+  ]
+}
+
+export default NextAuth(authOptions);
 ```
-
 </details>
 <br/>
 
+Agora é o momento que temos que pegar as variáveis de ambiente que criamos no Azure AD anteriormente. Para isso, vamos criar um arquivo chamado `.env.local` na raiz do projeto. E vamos adicionar as seguintes variáveis de ambiente:
+
+* `.env.local`
+
+```text
+AZURE_AD_CLIENT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+AZURE_AD_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AZURE_AD_TENANT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=123
+```
+
+Se desejar, eu criei um arquivo chamado `.env.local.example` que você pode usar como referência para criar o seu arquivo `.env.local`.
 
 
 ## Criando as páginas da aplicação
