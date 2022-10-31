@@ -551,7 +551,6 @@ Page links are still not working. But we will fix it in the next section. Let's 
 Now, let's create the pages for the application. Open the `pages` folder and create the following files:
 
 - `styles.css`
-- `server.tsx`
 - `protected.tsx`
 - `admin.tsx`
 - `reminder.tsx`
@@ -778,6 +777,7 @@ Wow! How many changes, right? 😅 Let's try to understand what is happening her
 Now run again the application and check the result:
 
 ![image](./images/image-02.jpg)
+
 
 
 

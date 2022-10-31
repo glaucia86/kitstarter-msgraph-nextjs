@@ -548,7 +548,6 @@ Os links das páginas ainda não estão funcionando. Vamos fazer isso agora?
 Agora, vamos criar as páginas da aplicação. Para isso, dentro da pasta `pages` crie os arquivos:
 
 - `styles.css`
-- `server.tsx`
 - `protected.tsx`
 - `admin.tsx`
 - `reminder.tsx`
