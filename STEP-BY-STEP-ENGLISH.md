@@ -477,9 +477,9 @@ import AzureADProvider from 'next-auth/providers/azure-ad';
 export const authOptions: NextAuthOptions = {
   providers: [
     AzureADProvider({
-      clientId: process.env.AZURE_CLIENT_ID,
-      clientSecret: process.env.AZURE_CLIENT_SECRET,
-      tenantId: process.env.AZURE_TENANT_ID,
+      clientId: process.env.AZURE_AD_CLIENT_ID,
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
+      tenantId: process.env.AZURE_AD_TENANT_ID,
     })
   ]
 }
@@ -778,6 +778,32 @@ Now run again the application and check the result:
 
 ![image](./images/image-02.jpg)
 
+Now in the root of the project, let's create a file called `process.d.ts`. This file is responsible for adding the environment variables that we created previously. So, add the following code:
 
+* `process.d.ts`
+
+<details><summary><b>process.d.ts</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: process.d.ts
+ * description: file responsible for the types of the process
+ * data: 11/01/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+declare namespace NodeJS {
+  export interface ProcessEnv {
+    NEXTAUTH_URL: string;
+    NEXTAUTH_SECRET: string;
+    AZURE_AD_CLIENT_SECRET: string;
+    AZURE_AD_CLIENT_ID: string;
+  }
+}
+``` 
+
+</details>
+<br/>
 
 
