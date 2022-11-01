@@ -803,6 +803,48 @@ declare namespace NodeJS {
 </details>
 <br/>
 
+Quando no projeto temos algumas páginas protegidas e podendo ser somente acessadas por usuários autenticados, é necessário criar um arquivo chamado `middleware.ts` na raiz do projeto e adicione o seguinte código:
+
+* `middleware.ts`
+
+<details><summary><b>middleware.ts</b></summary>
+
+```tsx
+/**
+ * file: middleware.ts
+ * description: file responsible for the middleware protected
+ *  pages/routes of the application
+ * data: 11/01/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { withAuth } from 'next-auth/middleware';
+
+export default withAuth({
+  callbacks: {
+    authorized({ req, token }) {
+      if (req.nextUrl.pathname === '/admin') {
+        return token?.userRole === 'admin';
+      }
+
+      return !!token;
+    },
+  },
+});
+
+export const config = { matcher: ['/admin', '/reminder'] };
+```
+
+</details>  
+<br/>
+
+Vamos entender o que aconteceu aqui. Importamos o `withAuth` do `next-auth/middleware` e, em seguida, e no `authorized` passamos o `req` e o `token` como parâmetros. E no `if` verificamos se o `req.nextUrl.pathname` é igual a `/admin` e, se for, retornamos o `token?.userRole` e, se não, retornamos o `token`. Ou seja, se o usuário for um `admin`, ele poderá acessar a página `/admin` e, se não, ele poderá acessar a página `/reminder`, se estiver autenticado.
+
+Se vocês desejam saber mais sobre o `middleware.ts`, podem acessar o seguinte link: [AQUI](https://next-auth.js.org/configuration/nextjs#middleware)
+
+
+
+
 
 
 
