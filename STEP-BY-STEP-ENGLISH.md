@@ -1078,3 +1078,17 @@ npm run dev
 And finally let's open the browser and go to the following URL: `http://localhost:3000/`. So, you should see the following full application:
 
 ![image](./images/gif-01.gif)
+
+And finally, we finished the application! 🎉🎉🎉
+
+## Final Words
+
+If you want to know more about Microsoft Graph, I recommend you to check out the following links:
+
+- [Microsoft Graph Fundalmentals](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-fundamentals/)
+- [Access a user's calendar events in a JavaScript app with Microsoft Graph](https://learn.microsoft.com/en-us/training/modules/msgraph-access-user-events/)
+- [Show a user's emails in a JavaScript app with Microsoft Graph](https://learn.microsoft.com/en-us/training/modules/msgraph-show-user-emails/)
+- [Download and upload files in a JavaScript app with Microsoft Graph](https://learn.microsoft.com/en-us/training/modules/msgraph-manage-files/)
+- [Access user photo information by using Microsoft Graph](https://learn.microsoft.com/en-us/training/modules/msgraph-user-photo-information/)
+- [Configure a JavaScript application to retrieve Microsoft 365 data by using Microsoft Graph](https://learn.microsoft.com/en-us/training/modules/msgraph-javascript-app/)
+- [Build apps with Microsoft Graph – Associate](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-associate/)
