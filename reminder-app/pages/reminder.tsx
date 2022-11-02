@@ -15,7 +15,6 @@ export default function ReminderPage() {
     <Layout>
       <h1>Reminder Page</h1>
       <p>Only admin users can see this page.</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   );
 }

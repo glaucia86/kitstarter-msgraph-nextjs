@@ -313,9 +313,6 @@ export default function Header() {
             <Link href='/'>Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href='/protected'>Protected</Link>
-          </li>
-          <li className={styles.navItem}>
             <Link href='/admin'>Admin</Link>
           </li>
           <li className={styles.navItem}>
@@ -551,7 +548,6 @@ Page links are still not working. But we will fix it in the next section. Let's 
 Now, let's create the pages for the application. Open the `pages` folder and create the following files:
 
 - `styles.css`
-- `protected.tsx`
 - `admin.tsx`
 - `reminder.tsx`
 
@@ -839,7 +835,7 @@ export default withAuth({
   },
 });
 
-export const config = { matcher: ['/admin', '/reminder'] };
+export const config = { matcher: ['/reminder'] };
 ```
 
 </details>  
@@ -849,3 +845,236 @@ Let's understand what is happening here. First, we are importing the `withAuth` 
 
 If you want to know more about the `middleware.ts` file, you can check the documentation of the `next-auth`: [HERE](https://next-auth.js.org/configuration/nextjs#middleware).
 
+We need to make some important changes in the `admin.tsx` file. So, let's add the following code:
+
+* `pages/admin.tsx`
+
+<details><summary><b>pages/admin.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/admin.tsx
+ * description: file responsible for the admin page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import Layout from '../components/Layout/layout';
+import AccessDenied from '../components/AccessDenied/access-denied';
+
+export default function Page() {
+  const { data: session } = useSession();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api/examples/admin-protected');
+      const json = await res.json();
+      if (json.content) {
+        setContent(json.content);
+      }
+    };
+
+    fetchData();
+  }, [session]);
+
+  if (!session) {
+    return (
+      <Layout>
+        <AccessDenied />
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <h1>Admin Page</h1>
+      <p>
+        <strong>{content ?? '\u00a0'}</strong>
+      </p>
+    </Layout>
+  );
+}
+```
+
+</details>
+<br/>
+
+Next step, inside the `api` folder let's create a folder called `examples`. And inside this folder, let's create a file called `admin-protected.ts`. So, add the following code:
+
+* `api/examples/admin-protected.ts`
+
+<details><summary><b>api/examples/admin-protected.ts</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/api/examples/admin-protected.ts
+ * description: file responsible for the admin protected example
+ * data: 11/01/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { unstable_getServerSession } from "next-auth/next"
+import { authOptions } from "../auth/[...nextauth]"
+
+import type { NextApiRequest, NextApiResponse } from "next"
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const session = await unstable_getServerSession(req, res, authOptions)
+
+  if (session) {
+    return res.send({
+      content:
+        "This is protected page. You can access this page because you are signed in.",
+    })
+  }
+
+  res.send({
+    error: "You must be signed in to view the protected page.",
+  })
+}
+```
+
+</details>
+<br/>
+
+And inside the `examples` folder, let's create a file called `session.ts`. So, add the following code:
+
+* `api/examples/session.ts`
+
+<details><summary><b>api/examples/session.ts</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/api/examples/session.ts
+ * description: file responsible for the session example
+ * data: 11/01/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const session = await unstable_getServerSession(req, res, authOptions);
+  res.send(JSON.stringify(session, null, 2));
+}
+```
+
+</details>
+<br/>
+
+And finally, let's make some changes in the `reminder.tsx` and `admin.tsx` files. So, let's add the following code:
+
+* `pages/admin.tsx`
+
+<details><summary><b>pages/admin.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/admin.tsx
+ * description: file responsible for the admin page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import Layout from '../components/Layout/layout';
+import AccessDenied from '../components/AccessDenied/access-denied';
+
+export default function Page() {
+  const { data: session } = useSession();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api/examples/admin-protected');
+      const json = await res.json();
+      if (json.content) {
+        setContent(json.content);
+      }
+    };
+
+    fetchData();
+  }, [session]);
+
+  if (!session) {
+    return (
+      <Layout>
+        <AccessDenied />
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <h1>Admin Page</h1>
+      <h2>Welcome, {session.user?.name}!</h2>
+      <p>
+        <strong>{content ?? '\u00a0'}</strong>
+      </p>
+      <br />
+      <iframe src='/api/examples/session' />
+    </Layout>
+  );
+}
+```
+
+</details>
+<br/>
+
+* `pages/reminder.tsx`
+
+<details><summary><b>pages/reminder.tsx</b></summary>
+<br/>
+
+```tsx
+/**
+ * file: pages/reminder.tsx
+ * description: file responsible for the reminder page
+ * data: 10/26/2022
+ * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ */
+
+import { useSession } from 'next-auth/react';
+import Layout from '../components/Layout/layout';
+
+export default function ReminderPage() {
+  const { data } = useSession();
+
+  return (
+    <Layout>
+      <h1>Reminder Page</h1>
+      <p>Only admin users can see this page.</p>
+    </Layout>
+  );
+}
+```
+
+</details>
+<br/>
+
+Now, let's run the application and test it out. So, let's run the following command:
+
+```bash
+npm run dev
+```
+
+And finally let's open the browser and go to the following URL: `http://localhost:3000/`. So, you should see the following full application:
+
+![image](./images/gif-01.gif)
