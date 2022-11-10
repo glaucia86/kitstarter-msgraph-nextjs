@@ -5,19 +5,45 @@
  * author: Glaucia Lemos <Twitter: @glaucia_lemos86>
  */
 
+import * as React from 'react';
+import Head from 'next/head';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import theme from '../config/theme';
+import createEmotionCache from '../config/createEmotionCache';
+
 import { SessionProvider } from 'next-auth/react';
-import './styles.css';
 
 import type { AppProps } from 'next/app';
 import type { Session } from 'next-auth';
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps<{ session: Session }>) {
+const clientSideEmotionCache = createEmotionCache();
+
+interface MyAppProps extends AppProps {
+  session: Session;
+  emotionCache?: EmotionCache;
+}
+
+export default function App(props: MyAppProps) {
+  const {
+    Component,
+    session,
+    emotionCache = clientSideEmotionCache,
+    pageProps,
+  } = props;
+
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name='viewport' content='initial-scale=1, width=device-width' />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <SessionProvider session={session}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </SessionProvider>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
