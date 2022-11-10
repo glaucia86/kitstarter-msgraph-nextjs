@@ -1,5 +1,7 @@
 # Kit Getting Started Project - Microsoft Graph 
 
+![gif-01](./images/gif-01.gif)
+
 A Kit Starter project using Microsoft Graph with Next.js
 
 ## 🚀 Resources Used
